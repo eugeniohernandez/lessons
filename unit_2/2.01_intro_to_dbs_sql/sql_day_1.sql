@@ -1,3 +1,5 @@
+-- SQL Day 1
+
 use bank;
 
 select * from trans;
