@@ -30,8 +30,34 @@ select avg(length)/60 as film_duration_avg from sakila.film;
 -- 9
 select count(length/60) as long_films from sakila.film where length/60 > 3;
 
--- 10
+-- 11
 select max(length(title)) as longest_title from sakila.film;
 
+-- Lab | SQL Queries 3
+
+-- 1
+select count(distinct(first_name)) from sakila.actor;
+
+-- 2
+select count(distinct(language_id)) from sakila.film;
+
+-- 3
+select count(rating) from sakila.film where rating="PG-13";
+
+-- 4
+select title, length from sakila.film order by length desc limit 10;
+
+-- 5
+select datediff(convert(max(rental_date),date), convert(min(rental_date), date)) as active_days from sakila.rental;
+
+-- 6
+select *, month(convert(rental_date, date)) as month, weekday(convert(rental_date, date)) as weekday from sakila.rental limit 20;
+
+-- 7
+select *, case when date_format(rental_date, '%W') in ('Saturday', 'Sunday') then 'weekend'else 'workday' end as day_type
+from sakila.rental;
+
+-- 8
+select count(*) from sakila.rental where datediff((select max(date(rental_date)) from sakila.rental), date(rental_date)) < 30;
 
 
